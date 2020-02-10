@@ -26,13 +26,14 @@ function test {
     fi
     # remove .temp file if exist 
     if [ -f $TEMPDIR/$filename ]; then 
-    while read e; do
-        # using mailx command
-        echo "$p UP" | mailx -s "[Website] $1 - UP ( $response )" $e
-        # using mail command
-        #mail -s "$p WEBSITE DOWN" "$EMAIL"
-    done < $EMAILLISTFILE
-    rm -f $TEMPDIR/$filename; fi
+      while read e; do
+          # using mailx command
+          echo "$p UP" | mailx -s "[Website] $1 - UP ( $response )" $e
+          # using mail command
+          #mail -s "$p WEBSITE DOWN" "$EMAIL"
+      done < $EMAILLISTFILE
+      rm -f $TEMPDIR/$filename; 
+    fi
   else
     # website down
     if [ "$QUIET" = false ] ; then echo -n "$response "; echo -e "\e[31m[DOWN]\e[0m"; fi
